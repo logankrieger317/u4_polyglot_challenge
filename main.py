@@ -15,8 +15,17 @@
 #-----------------------------------------------
 # Solution Goes Here - >
 #-----------------------------------------------
-
-
+def add_list(*args):
+    try:
+        return sum(args)
+    except TypeError:
+        return "NaN"
+    
+input("Answer 1: Press Enter to continue...")
+print(add_list()) 
+print(add_list(1, 2, 3)) 
+print(add_list(1, "a", 3)) 
+input("^^Answer 1^^: Press Enter to continue...")
 
 
 # Challenge 2: remove_ends
@@ -33,7 +42,16 @@
 # Solution Goes Here - >
 #-----------------------------------------------
 
-
+def remove_ends(s):
+    if len(s) < 3:
+        return ""
+    else:
+        return s[1:-1]
+    
+input("Answer 2: Press Enter to continue...")
+print(remove_ends('Led Zeppelin Rules')) 
+print(remove_ends('a')) 
+input("^^Answer 2^^: Press Enter to continue...")
 
 # Challenge 3: is_palindrome
 
@@ -51,8 +69,16 @@
 #-----------------------------------------------
 # Solution Goes Here - >
 #-----------------------------------------------
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
 
-
+input("Answer 3: Press Enter to continue...")
+print(is_palindrome('SEI Rocks')) 
+print(is_palindrome('rotor')) 
+print(is_palindrome('A nut for a jar of tuna')) 
+print(is_palindrome('')) 
+input("^^Answer 3^^: Press Enter to continue...")
 
 # Challenge 4: is_prime
 
@@ -69,7 +95,21 @@
 #-----------------------------------------------
 # Solution goes here ->
 #-----------------------------------------------
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
+input("Answer 4: Press Enter to continue...")
+print(is_prime(2)) 
+print(is_prime(3)) 
+print(is_prime(4)) 
+print(is_prime(29)) 
+print(is_prime(200)) 
+input("^^Answer 4^^: Press Enter to continue...")
 
 
 
@@ -91,7 +131,31 @@
 #-----------------------------------------------
 # Solution Goes Here ->
 #-----------------------------------------------
+def total_checkout_cost(shopping_cart, state):
+    tax_rate = 0.085
+    subtotal = sum(item["price"] for item in shopping_cart)
+    tax = subtotal * tax_rate
+    shipping = 0
+    if state in ["HI", "AK", "TX", "FL"]:
+        shipping = 10
+    elif state in ["AL", "MS", "NV", "IL"]:
+        shipping = 5
+    total = subtotal + tax + shipping
+    return total
 
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
+
+input("Answer 5: Press Enter to continue...")
+print(total_checkout_cost(shopping_cart, "CA")) 
+print(total_checkout_cost(shopping_cart, "TX")) 
+print(total_checkout_cost(shopping_cart, "IL")) 
+input("^^Answer 5^^: Press Enter to continue...")
 
 # Challenge 6: fizz_buzz
 
@@ -108,8 +172,21 @@
 #-----------------------------------------------
 # Solution Goes Here ->
 #-----------------------------------------------
-
-
+def fizz_buzz(n):
+    if type(n) != int:
+        return f"{n} is not a Number"
+    elif n % 15 == 0:
+        return f"{n} FizzBuzz"
+    elif n % 3 == 0:
+        return f"{n} Fizz"
+    elif n % 5 == 0:
+        return f"{n} Buzz"
+    else:
+        return f"{n} "
+    
+input("Answer 6: Press Enter to continue...")
+n = input("Enter a number: ")
+print(fizz_buzz(int(n)))
 
 
 # Challenge 7 - Chessboard Creator
@@ -139,11 +216,26 @@
     ["O","X","O","X","O","X","O"]
 ]
 
-#The white spaces should be represented by an: 'O' and the black an: 'X'
-
-# The first row should always start with a white space 'O'
 
 
 #-----------------------------------------------
 # Solution Goes Here - >
 #-----------------------------------------------
+input("Answer 7: Press Enter to continue...")
+rows = int(input("Enter the number of rows: "))
+columns = int(input("Enter the number of columns: "))
+
+def chess_board(rows, columns):
+    board = []
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            if (i + j) % 2 == 0:
+                row.append("O")
+            else:
+                row.append("X")
+        board.append(row)
+    return board
+
+print(chess_board(rows, columns))
+input("Thank You For Playing! Press Enter to exit...")
